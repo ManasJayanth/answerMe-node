@@ -11,6 +11,7 @@ var initserv = require('./njs/initserv.js');
 var serverspecific = require('./njs/serverspecific.js');
 var taketest = require('./njs/taketest.js');
 var usernameajax = require('./njs/usernameajax.js');
+var createtest = require('./njs/createtest.js');
 
 http.createServer(function (req, res) {
 	if (url.parse(req.url).pathname == '/index/') {
@@ -42,9 +43,14 @@ http.createServer(function (req, res) {
 	}
 	else if (url.parse(req.url).pathname == '/njs/usernameajax/') {
 		usernameajax.serve(req, res);
+	}
+	else if (url.parse(req.url).pathname == '/createtest/') {
+		createtest.serve(req, res);
 	} 
 	else {
-		file.serve(req, res);
+		res.writeHead(200, {'Content-Type': 'text/plain'});
+		res.write('Not a valid url!');
+		res.end('\nCould be /njs' + url.parse(req.url).pathname);
 	}
 }).listen(1337, '127.0.0.1');
 console.log('Server running at http://127.0.0.1:1337/');
