@@ -46,7 +46,10 @@ http.createServer(function (req, res) {
 	}
 	else if (url.parse(req.url).pathname == '/createtest/') {
 		createtest.serve(req, res);
-	} 
+	}
+	else if (url.parse(req.url).pathname.indexOf('js') != -1 || url.parse(req.url).pathname.indexOf('css') != -1) {
+		file.serve(req,res);
+	}
 	else {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.write('Not a valid url!');
