@@ -37,7 +37,7 @@ exports.serve = function(req, res) {
 				if (!e) {
 					console.log('STUDENT table initialised with a record');
 					// Finally creating the folder for the images
-					fs.mkdir(__dirname + '/Qimgs',function(e){
+					fs.mkdir('Qimgs',function(e){
 					    if(!e || (e && e.code === 'EEXIST')){
 					        console.log('Folder created!');
 					    } else {
